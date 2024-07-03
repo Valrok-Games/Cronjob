@@ -1,0 +1,7 @@
+# Unit tests
+tests/_coverage/*
+tests/_coverage/*.html
+*phpunit*
+!phpunit.xml
+phpcs-report-files.xml
+*.phpunit.result.cache
