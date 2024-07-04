@@ -65,6 +65,20 @@ class CronjobManager {
 		return $this;
 	}
 
+	/**
+	 * Removes all cronjobs
+	 *
+	 * @return self
+	 */
+	public function clear(): self {
+		foreach( self::$cronjobs as $cronjob ) {
+			$this->remove( $cronjob );
+		}
+
+		self::$cronjobs = [];
+		return $this;
+	}
+
     /**
      * Get scheduled cronjobs.
      *

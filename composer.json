@@ -46,7 +46,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Valrok\\Cronjob\\Tests": "tests/"
+            "Valrok\\Cronjob\\Tests\\": "tests/"
         }
     },
     "version": "1.0.0"

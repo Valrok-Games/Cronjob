@@ -13,6 +13,6 @@ if ( ! defined( 'SRC_DIR' ) ) {
 }
 
 /**
- * Load profil-rejser-post-types plugin files.
+ * Load vendor files.
  */
 require_once __DIR__ . '/vendor/autoload.php';
