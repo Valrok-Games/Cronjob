@@ -1,10 +1,11 @@
-name: PHPUnit Tests
+name: PHPUnit-tests
 
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
 on:
-  pull_request:
-    branches:
-      - master  # You can specify the branches where this action should run
-      - main  # You can specify the branches where this action should run
+  workflow_run:
+    workflows: [Semantic-release]
+    types: [completed]
 
 jobs:
   phpunit-test:
@@ -22,15 +23,6 @@ jobs:
 
     - name: Install Composer dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
-
-    - name: Install Xdebug
-      run: |
-        pecl install xdebug
-        echo "zend_extension=$(php -r 'echo ini_get("extension_dir");')/xdebug.so" >> $(php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||")
-        echo "xdebug.mode=coverage" >> $(php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||")
-        echo "xdebug.start_with_request=yes" >> $(php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||")
-        php -v
-        php -m
 
     - name: PHPUnit Tests
       run: composer run-script test
