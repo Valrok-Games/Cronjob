@@ -15,9 +15,13 @@ class ComposerStaticInitf142a14bba9946c5f85793a8c6dd0ecd
     );
 
     public static $prefixLengthsPsr4 = array (
+        'V' => 
+        array (
+            'Valrok\\Cronjob\\Tests\\' => 21,
+            'Valrok\\Cronjob\\' => 15,
+        ),
         'P' => 
         array (
-            'Profilrejser\\Tests\\' => 19,
             'PhpParser\\' => 10,
         ),
         'M' => 
@@ -35,9 +39,13 @@ class ComposerStaticInitf142a14bba9946c5f85793a8c6dd0ecd
     );
 
     public static $prefixDirsPsr4 = array (
-        'Profilrejser\\Tests\\' => 
+        'Valrok\\Cronjob\\Tests\\' => 
         array (
             0 => __DIR__ . '/../..' . '/tests',
+        ),
+        'Valrok\\Cronjob\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'PhpParser\\' => 
         array (

@@ -59,6 +59,7 @@ class Cronjob {
 	public function deschedule(): void {
 		$timestamp = wp_next_scheduled( $this->action_name );
 		wp_unschedule_event( $timestamp, $this->action_name );
+		remove_action( $this->action_name, [ $this, 'run' ] );
 	}
 
 	public function run(): void {

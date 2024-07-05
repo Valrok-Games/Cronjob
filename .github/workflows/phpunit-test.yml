@@ -1,0 +1,28 @@
+name: PHPUnit-tests
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  workflow_run:
+    workflows: [Semantic-release]
+    types: [completed]
+
+jobs:
+  phpunit-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'  # Specify the PHP version you need
+        extensions: mbstring, intl, dom, json, pdo, pdo_mysql, pdo_pgsql, pdo_sqlite, sqlite3, xml
+
+    - name: Install Composer dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: PHPUnit Tests
+      run: composer run-script test

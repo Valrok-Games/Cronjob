@@ -37,7 +37,7 @@
         "testverbose": "php ./vendor/bin/phpunit --verbose tests",
         "test": "phpunit --testdox",
         "testwithcoverage": "php -dxdebug.mode=coverage ./vendor/bin/phpunit --testdox  --coverage-text --coverage-html ./tests/_coverage",
-        "testci": "php -dxdebug.mode=coverage ./vendor/bin/phpunit --coverage-text --log-junit=phpunit-report.xml --coverage-cobertura=coverage.cobertura.xml --coverage-text --colors=never"
+        "testci": "php -dxdebug.mode=coverage ./vendor/bin/phpunit --testdox --log-junit=phpunit-report.xml --coverage-cobertura=coverage.cobertura.xml --coverage-text --colors=never"
     },
     "autoload": {
         "psr-4": {
@@ -46,7 +46,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Valrok\\Cronjob\\Tests": "tests/"
+            "Valrok\\Cronjob\\Tests\\": "tests/"
         }
     },
     "version": "1.0.0"
