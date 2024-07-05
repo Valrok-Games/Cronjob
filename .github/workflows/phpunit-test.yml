@@ -24,8 +24,17 @@ jobs:
     - name: Install Composer dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
+    - name: Install Xdebug
+      run: |
+        pecl install xdebug
+        echo "zend_extension=$(php -r 'echo ini_get("extension_dir");')/xdebug.so" >> $(php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||")
+        echo "xdebug.mode=coverage" >> $(php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||")
+        echo "xdebug.start_with_request=yes" >> $(php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||")
+        php -v
+        php -m
+
     - name: PHPUnit Tests
-        run: composer testci
+        run: composer run testci
 
     with:
         configuration: "phpunit.xml"

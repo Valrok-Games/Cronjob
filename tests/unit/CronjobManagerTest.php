@@ -3,11 +3,14 @@
 use PHPUnit\Framework\TestCase;
 use Valrok\Cronjob\Cronjob;
 use Valrok\Cronjob\CronjobManager;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
+use Brain\Monkey;
 
 class CronjobManagerTest extends TestCase {
 
     protected function setUp(): void {
         parent::setUp();
+        Monkey\setUp();
 
         // Mocking WordPress functions
         if (!function_exists('add_action')) {
