@@ -1,0 +1,33 @@
+name: PHPUnit Tests
+
+on:
+  pull_request:
+    branches:
+      - master  # You can specify the branches where this action should run
+      - main  # You can specify the branches where this action should run
+
+jobs:
+  phpunit-test:
+    runs-on: ubuntu-latest
+    needs: semantic-release
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'  # Specify the PHP version you need
+        extensions: mbstring, intl, dom, json, pdo, pdo_mysql, pdo_pgsql, pdo_sqlite, sqlite3, xml
+
+    - name: Install Composer dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: PHPUnit Tests
+        run: composer testci
+
+    with:
+        configuration: "phpunit.xml"
+        memory_limit: "256M"
+    # ... then your own project steps ...

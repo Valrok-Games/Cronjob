@@ -2,6 +2,7 @@
 tests/_coverage/*
 tests/_coverage/*.html
 *phpunit*
+!phpunit*.yml
 !phpunit.xml
 phpcs-report-files.xml
 *.phpunit.result.cache
