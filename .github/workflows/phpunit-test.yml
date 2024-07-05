@@ -18,7 +18,7 @@ jobs:
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.3'  # Specify the PHP version you need
+        php-version: '8.2'  # Specify the PHP version you need
         extensions: mbstring, intl, dom, json, pdo, pdo_mysql, pdo_pgsql, pdo_sqlite, sqlite3, xml
 
     - name: Install Composer dependencies
@@ -34,7 +34,7 @@ jobs:
         php -m
 
     - name: PHPUnit Tests
-        run: composer run testci
+        run: composer run-script test
 
     with:
         configuration: "phpunit.xml"
