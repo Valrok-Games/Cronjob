@@ -1,10 +1,10 @@
 name: PHPUnit Tests
 
 on:
-  workflow_run:
-    workflows: [semantic-release]
-    types:
-      - completed
+  pull_request:
+    branches:
+      - master  # You can specify the branches where this action should run
+      - main  # You can specify the branches where this action should run
 
 jobs:
   phpunit-test:
