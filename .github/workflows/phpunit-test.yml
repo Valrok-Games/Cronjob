@@ -1,15 +1,15 @@
 name: PHPUnit Tests
 
 on:
-  pull_request:
-    branches:
-      - master  # You can specify the branches where this action should run
-      - main  # You can specify the branches where this action should run
+  workflow_run:
+    workflows: [semantic-release]
+    types:
+      - completed
 
 jobs:
   phpunit-test:
     runs-on: ubuntu-latest
-    needs: semantic-release
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
     - name: Checkout code
@@ -34,9 +34,4 @@ jobs:
         php -m
 
     - name: PHPUnit Tests
-        run: composer run-script test
-
-    with:
-        configuration: "phpunit.xml"
-        memory_limit: "256M"
-    # ... then your own project steps ...
+      run: composer run-script test
